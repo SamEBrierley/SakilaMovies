@@ -2,12 +2,13 @@ package com.SakilaMovies.tsi.sam.brierley.SakilaMovies;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
 public class FilmText {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int film_id;
 
     private String title;

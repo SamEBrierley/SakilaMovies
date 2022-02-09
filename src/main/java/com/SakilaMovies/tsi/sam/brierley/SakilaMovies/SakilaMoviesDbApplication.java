@@ -87,6 +87,13 @@ public class SakilaMoviesDbApplication {
 		return categoryRepository.findAll();
 	}
 
+	@PostMapping("/AddCategory")
+	public @ResponseBody String addCategory(@RequestParam String name){
+		Category addCategory = new Category(name);
+		categoryRepository.save(addCategory);
+		return save;
+	}
+
 	@GetMapping("/AllCities")
 	public @ResponseBody
 	Iterable<City> getAllCities(){
