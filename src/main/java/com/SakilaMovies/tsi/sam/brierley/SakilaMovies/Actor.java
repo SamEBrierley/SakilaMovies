@@ -27,6 +27,7 @@ public class Actor {
         return actor_id;
     }
 
+
     public String getFirst_name() {
         return first_name;
     }

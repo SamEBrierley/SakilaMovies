@@ -3,6 +3,7 @@ package com.SakilaMovies.tsi.sam.brierley.SakilaMovies;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @SpringBootApplication
@@ -31,6 +32,7 @@ public class SakilaMoviesDbApplication {
 	@Autowired
 	private FilmRepository filmRepository;
 
+	private String save = "save";
 	public SakilaMoviesDbApplication(LanguageRepository languageRepository,
 									 ActorRepository actorRepository,
 									 CategoryRepository categoryRepository,
@@ -58,10 +60,25 @@ public class SakilaMoviesDbApplication {
 		return languageRepository.findAll();
 	}
 
+	@PostMapping("/AddLanguage")
+	public @ResponseBody String addLanguage(@RequestParam String name){
+		Language addLanguage = new Language(name);
+		languageRepository.save(addLanguage);
+		return save;
+	}
+//	Language addLanguage(@Validated @RequestBody Language language){
+//		return languageRepository.save(language);
+//	}
+
 	@GetMapping("/AllActors")
 	public @ResponseBody
 	Iterable<Actor> getAllActors(){
 		return actorRepository.findAll();
+	}
+
+	@PostMapping("/AddActors")
+	Actor addActor(@Validated @RequestBody Actor actor) {
+		return actorRepository.save(actor);
 	}
 
 	@GetMapping("/AllCategories")
@@ -93,4 +110,7 @@ public class SakilaMoviesDbApplication {
 	Iterable<Film> getAllFilms(){
 		return filmRepository.findAll();
 	}
+
+
+
 }
