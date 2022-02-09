@@ -16,10 +16,15 @@ public class SakilaMoviesDbApplication {
 	@Autowired
 	private ActorRepository actorRepository;
 
+	@Autowired
+	private CategoryRepository categoryRepository;
+
 	public SakilaMoviesDbApplication(LanguageRepository languageRepository,
-									 ActorRepository actorRepository){
+									 ActorRepository actorRepository,
+									 CategoryRepository categoryRepository){
 		this.languageRepository = languageRepository;
 		this.actorRepository = actorRepository;
+		this.categoryRepository= categoryRepository;
 	}
 
 
@@ -37,5 +42,11 @@ public class SakilaMoviesDbApplication {
 	public @ResponseBody
 	Iterable<Actor> getAllActors(){
 		return actorRepository.findAll();
+	}
+
+	@GetMapping("/AllCategories")
+	public @ResponseBody
+	Iterable<Category> getAllCategories(){
+		return categoryRepository.findAll();
 	}
 }
