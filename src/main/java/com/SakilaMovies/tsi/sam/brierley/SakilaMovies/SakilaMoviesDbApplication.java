@@ -10,36 +10,29 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/Home")
 public class SakilaMoviesDbApplication {
-
 	@Autowired
 	private LanguageRepository languageRepository;
-
 	@Autowired
 	private ActorRepository actorRepository;
-
 	@Autowired
 	private CategoryRepository categoryRepository;
-
 	@Autowired
 	private CityRepository cityRepository;
-
 	@Autowired
 	private CountryRepository countryRepository;
-
 	@Autowired
 	private FilmTextRepository filmTextRepository;
-
 	@Autowired
 	private FilmRepository filmRepository;
+	@Autowired
+	private StaffRepository staffRepository;
 
 	private String save = "save";
-	public SakilaMoviesDbApplication(LanguageRepository languageRepository,
-									 ActorRepository actorRepository,
-									 CategoryRepository categoryRepository,
-									 CityRepository cityRepository,
-									 CountryRepository countryRepository,
-									 FilmTextRepository filmTextRepository,
-									 FilmRepository filmRepository){
+
+	public SakilaMoviesDbApplication(LanguageRepository languageRepository, ActorRepository actorRepository,
+									 CategoryRepository categoryRepository, CityRepository cityRepository,
+									 CountryRepository countryRepository, FilmTextRepository filmTextRepository,
+									 FilmRepository filmRepository, StaffRepository staffRepository){
 		this.languageRepository = languageRepository;
 		this.actorRepository = actorRepository;
 		this.categoryRepository= categoryRepository;
@@ -47,6 +40,7 @@ public class SakilaMoviesDbApplication {
 		this.countryRepository=countryRepository;
 		this.filmTextRepository=filmTextRepository;
 		this.filmRepository=filmRepository;
+		this.staffRepository=staffRepository;
 	}
 
 
@@ -66,9 +60,6 @@ public class SakilaMoviesDbApplication {
 		languageRepository.save(addLanguage);
 		return save;
 	}
-//	Language addLanguage(@Validated @RequestBody Language language){
-//		return languageRepository.save(language);
-//	}
 
 	@GetMapping("/AllActors")
 	public @ResponseBody
@@ -76,10 +67,6 @@ public class SakilaMoviesDbApplication {
 		return actorRepository.findAll();
 	}
 
-	@PostMapping("/AddActors")
-	Actor addActor(@Validated @RequestBody Actor actor) {
-		return actorRepository.save(actor);
-	}
 
 	@GetMapping("/AllCategories")
 	public @ResponseBody
@@ -118,6 +105,10 @@ public class SakilaMoviesDbApplication {
 		return filmRepository.findAll();
 	}
 
-
+	@GetMapping("/AllStaff")
+	public @ResponseBody
+	Iterable<Staff> getAllStaff(){
+		return staffRepository.findAll();
+	}
 
 }
