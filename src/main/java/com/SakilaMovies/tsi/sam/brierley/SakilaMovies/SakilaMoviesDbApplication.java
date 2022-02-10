@@ -43,7 +43,6 @@ public class SakilaMoviesDbApplication {
 		this.staffRepository=staffRepository;
 	}
 
-
 	public static void main(String[] args) {
 		SpringApplication.run(SakilaMoviesDbApplication.class, args);
 	}
