@@ -89,6 +89,13 @@ public class SakilaMoviesDbApplication {
 		return cityRepository.findAll();
 	}
 
+	@PostMapping("/AddCity")
+	public @ResponseBody String addCity(@RequestParam String city, int country_id){
+		City addCity = new City(city, country_id);
+		cityRepository.save(addCity);
+		return save;
+	}
+
 	@GetMapping("/AllCountries")
 	public @ResponseBody
 	Iterable<Country> getAllCountries(){
@@ -102,6 +109,18 @@ public class SakilaMoviesDbApplication {
 		return filmRepository.findAll();
 	}
 
+	@PostMapping ("/AddFilm")
+	public @ResponseBody String addFilm(@RequestParam String title, String description, int release_year, int rental_duration,
+										double rental_rate, int length, double replacement_cost, String rating,
+										String special_features){
+		Film addFilm = new Film(title, description, release_year, rental_duration,
+								rental_rate,length,replacement_cost, rating,
+								special_features);
+		filmRepository.save(addFilm);
+		return save;
+	}
+
+
 	@GetMapping("/AllStaff")
 	public @ResponseBody
 	Iterable<Staff> getAllStaff(){
@@ -109,10 +128,10 @@ public class SakilaMoviesDbApplication {
 	}
 
 	@PostMapping("/AddStaff")
-	public @ResponseBody String addStaff(@RequestParam String first_name, @RequestParam String last_name,
-										 @RequestParam int address_id, @RequestParam String email,
-										 @RequestParam int store_id, @RequestParam String username,
-										 @RequestParam String password){
+	public @ResponseBody String addStaff(@RequestParam String first_name, String last_name,
+										  int address_id, String email,
+										  int store_id, String username,
+										  String password){
 		Staff addStaff = new Staff(first_name, last_name, address_id, email, store_id, username, password);
 		staffRepository.save(addStaff);
 		return save;

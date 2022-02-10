@@ -83,4 +83,29 @@ public class MockitoTest {
         staffArgumentCaptor.getValue();
         Assertions.assertEquals(expected,actual,"Staff data has not been entered into the mock database");
     }
+
+    @Test
+    public void testAddCity(){
+        City saveCity = new City("Sydney",'8');
+        String expected = "save";
+        String actual = sakilaMoviesDbApplication.addCity(saveCity.getCity(), saveCity.getCountry_id());
+        ArgumentCaptor<City> cityArgumentCaptor = ArgumentCaptor.forClass(City.class);
+        verify(cityRepository).save(cityArgumentCaptor.capture());
+        cityArgumentCaptor.getValue();
+        Assertions.assertEquals(expected,actual,"Staff data has not been entered into the mock database");
+    }
+
+    @Test
+    public void testAddFilm(){
+        Film saveFilm = new Film("Danger Island 3D", "Danger Island but in 3D", 2022, '3', 3.99, 94, 10.99,
+                "NC-17", "Trailers,Deleted Scenes");
+        String expected = "save";
+        String actual = sakilaMoviesDbApplication.addFilm(saveFilm.getTitle(),saveFilm.getDescription(), saveFilm.getRelease_year(),
+                saveFilm.getRental_duration(), saveFilm.getRental_rate(), saveFilm.getLength(), saveFilm.getReplacement_cost(),
+                saveFilm.getRating(), saveFilm.getSpecial_features());
+        ArgumentCaptor<Film> filmArgumentCaptor = ArgumentCaptor.forClass(Film.class);
+        verify(filmRepository).save(filmArgumentCaptor.capture());
+        filmArgumentCaptor.getValue();
+        Assertions.assertEquals(expected,actual,"Film data has not been entered into the mock database");
+    }
 }

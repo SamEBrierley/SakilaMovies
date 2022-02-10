@@ -15,8 +15,9 @@ public class City {
     private String city;
     private int country_id;
 
-    public City(String city){
+    public City(String city, int country_id){
         this.city=city;
+        this.country_id=country_id;
     }
 
     public City(){
@@ -29,6 +30,10 @@ public class City {
 
     public int getCountry_id() {
         return country_id;
+    }
+
+    public void setCountry_id(int country_id) {
+        this.country_id = country_id;
     }
 
     public String getCity() {
