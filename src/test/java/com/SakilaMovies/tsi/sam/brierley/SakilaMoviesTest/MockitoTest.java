@@ -41,12 +41,34 @@ public class MockitoTest {
 
     @Test
     public void testAddLanguage(){
-        Language saveLanguage = new Language("Test Language");
+        Language saveLanguage = new Language("Portuguese");
         String expected = "save";
         String actual = sakilaMoviesDbApplication.addLanguage(saveLanguage.getName());
         ArgumentCaptor<Language> languageArgumentCaptor = ArgumentCaptor.forClass(Language.class);
         verify(languageRepository).save(languageArgumentCaptor.capture());
         languageArgumentCaptor.getValue();
-        Assertions.assertEquals(expected, actual, "Data has not been entered into the mock database");
+        Assertions.assertEquals(expected, actual, "Language data has not been entered into the mock database");
+    }
+
+    @Test
+    public void testAddCategory(){
+        Category saveCategory = new Category("Indie");
+        String expected = "save";
+        String actual = sakilaMoviesDbApplication.addCategory(saveCategory.getName());
+        ArgumentCaptor<Category> categoryArgumentCaptor = ArgumentCaptor.forClass(Category.class);
+        verify(categoryRepository).save(categoryArgumentCaptor.capture());
+        categoryArgumentCaptor.getValue();
+        Assertions.assertEquals(expected, actual,"Category data has not been entered into the mock database");
+    }
+
+    @Test
+    public void testAddActor(){
+        Actor saveActor = new Actor("Reanu", "Keeves");
+        String expected = "save";
+        String actual = sakilaMoviesDbApplication.addActor(saveActor.getFirst_name(),saveActor.getLast_name());
+        ArgumentCaptor<Actor> actorArgumentCaptor = ArgumentCaptor.forClass(Actor.class);
+        verify(actorRepository).save(actorArgumentCaptor.capture());
+        actorArgumentCaptor.getValue();
+        Assertions.assertEquals(expected,actual,"Actor data has not been entered into the mock database");
     }
 }
