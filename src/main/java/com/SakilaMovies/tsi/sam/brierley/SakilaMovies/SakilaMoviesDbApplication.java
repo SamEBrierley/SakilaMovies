@@ -21,8 +21,6 @@ public class SakilaMoviesDbApplication {
 	@Autowired
 	private CountryRepository countryRepository;
 	@Autowired
-	private FilmTextRepository filmTextRepository;
-	@Autowired
 	private FilmRepository filmRepository;
 	@Autowired
 	private StaffRepository staffRepository;
@@ -31,14 +29,13 @@ public class SakilaMoviesDbApplication {
 
 	public SakilaMoviesDbApplication(LanguageRepository languageRepository, ActorRepository actorRepository,
 									 CategoryRepository categoryRepository, CityRepository cityRepository,
-									 CountryRepository countryRepository, FilmTextRepository filmTextRepository,
+									 CountryRepository countryRepository,
 									 FilmRepository filmRepository, StaffRepository staffRepository){
 		this.languageRepository = languageRepository;
 		this.actorRepository = actorRepository;
 		this.categoryRepository= categoryRepository;
 		this.cityRepository=cityRepository;
 		this.countryRepository=countryRepository;
-		this.filmTextRepository=filmTextRepository;
 		this.filmRepository=filmRepository;
 		this.staffRepository=staffRepository;
 	}
@@ -73,7 +70,6 @@ public class SakilaMoviesDbApplication {
 		return save;
 	}
 
-
 	@GetMapping("/AllCategories")
 	public @ResponseBody
 	Iterable<Category> getAllCategories(){
@@ -99,11 +95,6 @@ public class SakilaMoviesDbApplication {
 		return countryRepository.findAll();
 	}
 
-	@GetMapping("/AllFilmText")
-	public @ResponseBody
-	Iterable<FilmText> getAllFilmText(){
-		return filmTextRepository.findAll();
-	}
 
 	@GetMapping("/AllFilms")
 	public @ResponseBody
@@ -115,6 +106,16 @@ public class SakilaMoviesDbApplication {
 	public @ResponseBody
 	Iterable<Staff> getAllStaff(){
 		return staffRepository.findAll();
+	}
+
+	@PostMapping("/AddStaff")
+	public @ResponseBody String addStaff(@RequestParam String first_name, @RequestParam String last_name,
+										 @RequestParam int address_id, @RequestParam String email,
+										 @RequestParam int store_id, @RequestParam String username,
+										 @RequestParam String password){
+		Staff addStaff = new Staff(first_name, last_name, address_id, email, store_id, username, password);
+		staffRepository.save(addStaff);
+		return save;
 	}
 
 }

@@ -26,8 +26,6 @@ public class MockitoTest {
     @Mock
     private CountryRepository countryRepository;
     @Mock
-    private FilmTextRepository filmTextRepository;
-    @Mock
     private FilmRepository filmRepository;
     @Mock
     private StaffRepository staffRepository;
@@ -36,7 +34,7 @@ public class MockitoTest {
     @BeforeEach
     void Setup(){
         sakilaMoviesDbApplication = new SakilaMoviesDbApplication(languageRepository,  actorRepository, categoryRepository,
-                cityRepository, countryRepository, filmTextRepository, filmRepository, staffRepository);
+                cityRepository, countryRepository, filmRepository, staffRepository);
     }
 
     @Test
@@ -70,5 +68,19 @@ public class MockitoTest {
         verify(actorRepository).save(actorArgumentCaptor.capture());
         actorArgumentCaptor.getValue();
         Assertions.assertEquals(expected,actual,"Actor data has not been entered into the mock database");
+    }
+
+    @Test
+    public void testAddStaff(){
+        Staff saveStaff = new Staff("Carl", "Carlson", '3',
+                "CarlCarlson325@gmail.com", '1', "2Carl", "root");
+        String expected = "save";
+        String actual = sakilaMoviesDbApplication.addStaff(saveStaff.getFirst_name(), saveStaff.getLast_name(),
+                saveStaff.getAddress_id(), saveStaff.getEmail(), saveStaff.getStore_id(), saveStaff.getUsername(),
+                saveStaff.getPassword());
+        ArgumentCaptor<Staff> staffArgumentCaptor = ArgumentCaptor.forClass(Staff.class);
+        verify(staffRepository).save(staffArgumentCaptor.capture());
+        staffArgumentCaptor.getValue();
+        Assertions.assertEquals(expected,actual,"Staff data has not been entered into the mock database");
     }
 }
