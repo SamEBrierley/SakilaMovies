@@ -85,6 +85,16 @@ public class MockitoTest {
     }
 
     @Test
+    public void testAddCountry(){
+        Country saveCountry = new Country("England");
+        String expected = "save";
+        String actual = sakilaMoviesDbApplication.addCountry((saveCountry.getCountry()));
+        ArgumentCaptor<Country> countryArgumentCaptor = ArgumentCaptor.forClass(Country.class);
+        verify(countryRepository).save(countryArgumentCaptor.capture());
+        countryArgumentCaptor.getValue();
+        Assertions.assertEquals(expected,actual,"Country data has not been entered into the mock database");
+    }
+    @Test
     public void testAddCity(){
         City saveCity = new City("Sydney",'8');
         String expected = "save";

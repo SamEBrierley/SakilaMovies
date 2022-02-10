@@ -10,9 +10,9 @@ import static org.junit.Assert.assertEquals;
 class SakilaMoviesDbApplicationTests {
 
 //    private Language language = new Language();
-//
+
 //    @Test
-//    public void testConstructor(){
+//    public void test_constructor(){
 //        assertTrue("It is not an instance of Language", language instanceof Language);
 //    }
 

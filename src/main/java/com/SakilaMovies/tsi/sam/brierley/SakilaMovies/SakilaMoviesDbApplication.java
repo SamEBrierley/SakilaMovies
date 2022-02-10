@@ -102,6 +102,12 @@ public class SakilaMoviesDbApplication {
 		return countryRepository.findAll();
 	}
 
+	@PostMapping("/AddCountries")
+	public @ResponseBody String addCountry(@RequestParam String country){
+		Country addCountry = new Country (country);
+		countryRepository.save(addCountry);
+		return save;
+	}
 
 	@GetMapping("/AllFilms")
 	public @ResponseBody
