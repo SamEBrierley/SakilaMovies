@@ -1,6 +1,7 @@
 package com.SakilaMovies.tsi.sam.brierley.SakilaMoviesTest;
 
 import com.SakilaMovies.tsi.sam.brierley.SakilaMovies.Film;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -41,6 +42,38 @@ public class FilmTest {
     public void testRentalRate(){
         Film testRentalRate = new Film();
         testRentalRate.setRental_rate(4.99);
+        Assertions.assertEquals(4.99, testRentalRate.getRental_rate(), "Incorrect rental rate");
+    }
+
+    @Test
+    public void testLength(){
+        Film testLength = new Film();
+        testLength.setLength(99);
+        assertEquals("Incorrect movie length", 99, testLength.getLength());
+    }
+
+    @Test
+    public void testReplacementCost(){
+        Film testReplacementCost = new Film();
+        testReplacementCost.setReplacement_cost(10.99);
+        Assertions.assertEquals(10.99, testReplacementCost.getReplacement_cost(),
+                "Incorrect replacement cost");
+    }
+
+    @Test
+    public void testRating(){
+        Film testRating = new Film();
+        testRating.setRating("PG-13");
+        assertEquals("Incorrect Rating","PG-13", testRating.getRating());
+    }
+
+    @Test
+    public void testSpecialFeatures(){
+        Film testSpecialFeatures = new Film();
+        testSpecialFeatures.setSpecial_features("Deleted Scenes");
+        assertEquals("Incorrect special Features", "Deleted Scenes",
+                testSpecialFeatures.getSpecial_features());
+
     }
 
     @Test
