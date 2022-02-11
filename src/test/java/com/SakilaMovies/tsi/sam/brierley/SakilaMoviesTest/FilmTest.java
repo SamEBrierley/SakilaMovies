@@ -10,7 +10,7 @@ public class FilmTest {
     private Film film = new Film();
 
     @Test
-    public void testTitle(){
+    public void testSetTitle(){
         Film testTitle = new Film();
         testTitle.setTitle("The Adventures of Joe Danger IV");
         assertEquals("Incorrect title", "The Adventures of Joe Danger IV", testTitle.getTitle());
