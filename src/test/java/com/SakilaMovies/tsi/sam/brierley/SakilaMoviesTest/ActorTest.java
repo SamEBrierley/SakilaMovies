@@ -20,7 +20,7 @@ public class ActorTest {
 
         Actor testFirstName = new Actor();
         testFirstName.setFirst_name("Reanu");
-        assertEquals( "Incorrect first name!", "Reanu", testFirstName.getFirst_name());
+        assertEquals( "Incorrect first name", "Reanu", testFirstName.getFirst_name());
     }
 
     @Test
@@ -28,7 +28,7 @@ public class ActorTest {
 
         Actor testLastName = new Actor();
         testLastName.setLast_name("Keeves");
-        assertEquals("Incorrect first name!","Keeves", testLastName.getLast_name());
+        assertEquals("Incorrect last name","Keeves", testLastName.getLast_name());
     }
 
     @Test
