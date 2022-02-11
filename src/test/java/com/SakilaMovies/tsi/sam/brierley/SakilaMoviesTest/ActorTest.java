@@ -17,7 +17,6 @@ public class ActorTest {
 
     @Test
     public void testFirstName() {
-
         Actor testFirstName = new Actor();
         testFirstName.setFirst_name("Reanu");
         assertEquals( "Incorrect first name", "Reanu", testFirstName.getFirst_name());
@@ -25,7 +24,6 @@ public class ActorTest {
 
     @Test
     public void testLastName() {
-
         Actor testLastName = new Actor();
         testLastName.setLast_name("Keeves");
         assertEquals("Incorrect last name","Keeves", testLastName.getLast_name());
