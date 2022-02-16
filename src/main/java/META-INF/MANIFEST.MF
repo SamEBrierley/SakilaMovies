@@ -1,4 +1,2 @@
 Manifest-Version: 1.0
-Main-Class: com.SakilaMovies.tsi.sam.brierley.SakilaMovies.SakilaMoviesD
- bApplication
-
+Main-Class: com.SakilaMovies.tsi.sam.brierley.SakilaMovies.SakilaMoviesDbApplication
