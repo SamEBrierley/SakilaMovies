@@ -1,7 +1,6 @@
 package com.SakilaMovies.tsi.sam.brierley.SakilaMoviesTest;
 
 import com.SakilaMovies.tsi.sam.brierley.SakilaMovies.Language;
-import com.SakilaMovies.tsi.sam.brierley.SakilaMovies.Staff;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.Assert.assertEquals;
