@@ -9,7 +9,12 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @ExtendWith(MockitoExtension.class)
 public class MockitoTest {
@@ -118,4 +123,5 @@ public class MockitoTest {
         filmArgumentCaptor.getValue();
         Assertions.assertEquals(expected,actual,"Film data has not been entered into the mock database");
     }
+
 }

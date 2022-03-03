@@ -5,6 +5,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
+@CrossOrigin(origins = "*")
 @SpringBootApplication
 @RestController
 @RequestMapping("/Home")
@@ -63,6 +66,12 @@ public class SakilaMoviesDbApplication {
 		return actorRepository.findAll();
 	}
 
+	@GetMapping("/Actor/{actor_id}")
+	public @ResponseBody
+	Optional<Actor> getActorByID(@PathVariable int actor_id) {
+		return actorRepository.findById(actor_id);
+	}
+
 	@PostMapping("/AddActor")
 	public @ResponseBody String addActor(@RequestParam String first_name, @RequestParam String last_name){
 		Actor addActor = new Actor(first_name, last_name);
@@ -81,6 +90,12 @@ public class SakilaMoviesDbApplication {
 		Category addCategory = new Category(name);
 		categoryRepository.save(addCategory);
 		return save;
+	}
+
+	@GetMapping("/Category/{category_id}")
+	public @ResponseBody
+	Optional<Category> getCategoryByID(@PathVariable int category_id) {
+		return categoryRepository.findById(category_id);
 	}
 
 	@GetMapping("/AllCities")
@@ -126,6 +141,19 @@ public class SakilaMoviesDbApplication {
 		return save;
 	}
 
+	@GetMapping("/Film/{film_id}")
+	public @ResponseBody
+	Optional<Film> getFilmByID(@PathVariable int film_id) {
+		return filmRepository.findById(film_id);
+	}
+
+	@DeleteMapping("/Delete/{film_id}")
+	public @ResponseBody
+	String deleteFilmByID(@PathVariable int film_id) {
+		filmRepository.deleteById(film_id);
+		return "deleted";
+	}
+
 	@GetMapping("/AllStaff")
 	public @ResponseBody
 	Iterable<Staff> getAllStaff(){
@@ -142,4 +170,10 @@ public class SakilaMoviesDbApplication {
 		return save;
 	}
 
+	@DeleteMapping("/Delete/{staff_id}")
+	public @ResponseBody
+	String deleteStaffByID(@PathVariable int staff_id) {
+		staffRepository.deleteById(staff_id);
+		return "deleted";
+	}
 }
