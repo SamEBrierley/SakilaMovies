@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @ExtendWith(MockitoExtension.class)
 public class MockitoTest {
@@ -65,6 +66,13 @@ public class MockitoTest {
     }
 
     @Test
+    public void testGetCategoryById(){
+        Category testCategory = new Category("Indie");
+        when(sakilaMoviesDbApplication.getCategoryByID(0)).thenReturn(Optional.of(testCategory));
+        Assertions.assertEquals(Optional.of(testCategory), sakilaMoviesDbApplication.getCategoryByID(0), "This Category ID test has failed");
+    }
+
+    @Test
     public void testAddActor(){
         Actor saveActor = new Actor("Reanu", "Keeves");
         String expected = "save";
@@ -73,6 +81,13 @@ public class MockitoTest {
         verify(actorRepository).save(actorArgumentCaptor.capture());
         actorArgumentCaptor.getValue();
         Assertions.assertEquals(expected,actual,"Actor data has not been entered into the mock database");
+    }
+
+    @Test
+    public void testGetActorById(){
+        Actor testActor = new Actor("Reanu", "Keeves");
+        when(sakilaMoviesDbApplication.getActorByID(0)).thenReturn(Optional.of(testActor));
+        Assertions.assertEquals(Optional.of(testActor), sakilaMoviesDbApplication.getActorByID(0), "This Actor Id getting test has failed");
     }
 
     @Test
@@ -123,5 +138,11 @@ public class MockitoTest {
         filmArgumentCaptor.getValue();
         Assertions.assertEquals(expected,actual,"Film data has not been entered into the mock database");
     }
-
+    @Test
+    public void testGetFilmById(){
+        Film testFilm = new Film("Danger Island 3D", "Danger Island but in 3D", 2022, '3', 3.99, 94, 10.99,
+                "NC-17", "Trailers,Deleted Scenes");
+        when(sakilaMoviesDbApplication.getFilmByID(0)).thenReturn(Optional.of(testFilm));
+        Assertions.assertEquals(Optional.of(testFilm), sakilaMoviesDbApplication.getFilmByID(0), "This Film Id getting test has failed");
+    }
 }
