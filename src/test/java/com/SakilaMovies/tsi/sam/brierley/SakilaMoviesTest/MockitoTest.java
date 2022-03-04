@@ -42,7 +42,42 @@ public class MockitoTest {
         sakilaMoviesDbApplication = new SakilaMoviesDbApplication(languageRepository,  actorRepository, categoryRepository,
                 cityRepository, countryRepository, filmRepository, staffRepository);
     }
+    @Test
+    public void testGetLanguage(){
+        Language testLanguage = new Language("name");
+        List<Language> languageList = new ArrayList<>();
+        languageList.add(testLanguage);
+        when(sakilaMoviesDbApplication.getAllLanguages()).thenReturn(languageList);
+        Assertions.assertEquals(languageList, sakilaMoviesDbApplication.getAllLanguages(), "This Language getting test has failed");
+    }
 
+    @Test
+    public void testGetFilm(){
+        Film testFilm = new Film("Danger Island 3D", "Danger Island but in 3D", 2022, '3', 3.99, 94, 10.99,
+                "NC-17", "Trailers,Deleted Scenes");
+        List<Film> filmList = new ArrayList<>();
+        filmList.add(testFilm);
+        when(sakilaMoviesDbApplication.getAllFilms()).thenReturn(filmList);
+        Assertions.assertEquals(filmList, sakilaMoviesDbApplication.getAllFilms(), "This film getting test has failed");
+    }
+
+    @Test
+    public void testGetActor(){
+        Actor testActor = new Actor("Reanu", "Keeves");
+        List<Actor> actorList = new ArrayList<>();
+        actorList.add(testActor);
+        when(sakilaMoviesDbApplication.getAllActors()).thenReturn(actorList);
+        Assertions.assertEquals(actorList, sakilaMoviesDbApplication.getAllActors(), "This Actor getting test has failed");
+    }
+
+    @Test
+    public void testGetCategory(){
+        Category testCategory = new Category("Name");
+        List<Category> categoryList = new ArrayList<>();
+        categoryList.add(testCategory);
+        when(sakilaMoviesDbApplication.getAllCategories()).thenReturn(categoryList);
+        Assertions.assertEquals(categoryList, sakilaMoviesDbApplication.getAllCategories(), "This Category getting test has failed");
+    }
     @Test
     public void testAddLanguage(){
         Language saveLanguage = new Language("Portuguese");
@@ -123,6 +158,7 @@ public class MockitoTest {
         verify(cityRepository).save(cityArgumentCaptor.capture());
         cityArgumentCaptor.getValue();
         Assertions.assertEquals(expected,actual,"Staff data has not been entered into the mock database");
+
     }
 
     @Test

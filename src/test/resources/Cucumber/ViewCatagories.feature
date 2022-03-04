@@ -1,4 +1,4 @@
-Features: View Categories
+Feature: View Categories
   Scenario: Viewing all Categories
     Given There are categorys available
     When The categorys are requested
