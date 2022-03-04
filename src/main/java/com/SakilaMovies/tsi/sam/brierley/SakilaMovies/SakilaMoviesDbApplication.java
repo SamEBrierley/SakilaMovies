@@ -60,6 +60,19 @@ public class SakilaMoviesDbApplication {
 		return save;
 	}
 
+	@GetMapping("/Language/{language_id}")
+	public @ResponseBody
+	Optional<Language> getLanguageByID(@PathVariable int language_id) {
+		return languageRepository.findById(language_id);
+	}
+
+	@DeleteMapping("/Delete/{language_id}")
+	public @ResponseBody
+	String deleteLanguageByID(@PathVariable int language_id) {
+		languageRepository.deleteById(language_id);
+		return "deleted";
+	}
+
 	@GetMapping("/AllActors")
 	public @ResponseBody
 	Iterable<Actor> getAllActors(){
