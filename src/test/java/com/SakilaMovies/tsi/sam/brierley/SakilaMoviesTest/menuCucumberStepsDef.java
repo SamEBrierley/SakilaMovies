@@ -6,11 +6,9 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.beans.factory.annotation.Autowired;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -234,5 +232,5 @@ public class menuCucumberStepsDef {
     public void theSpecifiedFilmWillBeReturned() {
         Assertions.assertEquals(Optional.of(storedFilm1), sakilaMovieDBApp.getFilmByID(0), "Film specified by id was not retrieved from the Film database.");
     }
-    
+
 }
