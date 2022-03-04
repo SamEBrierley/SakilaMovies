@@ -358,6 +358,24 @@ public class menuCucumberStepsDef {
     }
 
 
+    List<Staff> staffList = new ArrayList<>();
+    Staff testStaff;
+    @Given("There are staff members available")
+    public void there_are_staff_members_available() {
+        testStaff = new Staff("Carl", "Carlson", '3',
+                "CarlCarlson325@gmail.com", '1', "2Carl", "root");
+        staffList.add(testStaff);
+    }
+    @When("The staff members are requested")
+    public void the_staff_members_are_requested() {
+
+        when(sakilaMoviesDbApplication.getAllStaff()).thenReturn(staffList);
+    }
+    @Then("All available staff members should be returned")
+    public void all_available_staff_members_should_be_returned() {
+        Assertions.assertEquals(staffList, sakilaMoviesDbApplication.getAllStaff(), "This Staff getting test has failed");
+    }
+
     @Given("There are cities available")
     public void there_are_cities_available() {
         // Write code here that turns the phrase above into concrete actions
@@ -389,24 +407,6 @@ public class menuCucumberStepsDef {
         // Write code here that turns the phrase above into concrete actions
         throw new io.cucumber.java.PendingException();
     }
-
-    @Given("There are staff members available")
-    public void there_are_staff_members_available() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
-    }
-    @When("The staff members are requested")
-    public void the_staff_members_are_requested() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
-    }
-    @Then("All available staff members should be returned")
-    public void all_available_staff_members_should_be_returned() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
-    }
-
-
 
 
 }

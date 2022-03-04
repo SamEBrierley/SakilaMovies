@@ -79,6 +79,16 @@ public class MockitoTest {
         Assertions.assertEquals(categoryList, sakilaMoviesDbApplication.getAllCategories(), "This Category getting test has failed");
     }
     @Test
+    public void testGetStaff(){
+        Staff testStaff = new Staff("Carl", "Carlson", '3',
+                "CarlCarlson325@gmail.com", '1', "2Carl", "root");
+        List<Staff> staffList = new ArrayList<>();
+        staffList.add(testStaff);
+        when(sakilaMoviesDbApplication.getAllStaff()).thenReturn(staffList);
+        Assertions.assertEquals(staffList, sakilaMoviesDbApplication.getAllStaff(), "This Staff getting test has failed");
+    }
+
+    @Test
     public void testAddLanguage(){
         Language saveLanguage = new Language("Portuguese");
         String expected = "save";
@@ -180,5 +190,15 @@ public class MockitoTest {
                 "NC-17", "Trailers,Deleted Scenes");
         when(sakilaMoviesDbApplication.getFilmByID(0)).thenReturn(Optional.of(testFilm));
         Assertions.assertEquals(Optional.of(testFilm), sakilaMoviesDbApplication.getFilmByID(0), "This Film Id getting test has failed");
+    }
+
+    @Test
+    void testDeleteCategory(){
+        String actual = sakilaMoviesDbApplication.deleteCategoryByID(1);
+        String expected = "deleted";
+        ArgumentCaptor<Integer> categoryArgumentCaptor = ArgumentCaptor.forClass(Integer.class);
+        verify(categoryRepository).deleteById(categoryArgumentCaptor.capture());
+        categoryArgumentCaptor.getValue();
+        Assertions.assertEquals(expected, actual, "The specified category was not successfully deleted.");
     }
 }

@@ -189,4 +189,10 @@ public class SakilaMoviesDbApplication {
 		staffRepository.deleteById(staff_id);
 		return "deleted";
 	}
+
+	@DeleteMapping("/DeleteCategory/{categoryID}")
+	public @ResponseBody String deleteCategoryByID(@PathVariable int categoryID){
+		categoryRepository.deleteById(categoryID);
+		return "deleted";
+	}
 }
